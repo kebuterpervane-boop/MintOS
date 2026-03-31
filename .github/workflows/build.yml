@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [a51, a52sxq, a71, a73xq, m52xq, r9q, r9q2]
+        target: [r8q]
 
     steps:
       - name: Checkout repo
@@ -73,6 +73,7 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh --ignore-target
+          rm -rf $ODIN_DIR/*  # ~5GB tasarruf
 
       - name: Download target firmware
         run: |
@@ -83,6 +84,7 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh --ignore-source
+          rm -rf $ODIN_DIR/*  # ~5GB tasarruf
 
       - name: Build ROM
         run: |

@@ -3,3 +3,39 @@ ro.netflix.bsp_rev=Q8250-19134-1
 
 # Fix RIL on Android 16
 ro.telephony.sim_slots.count=2
+
+# --- SD865 Optimizasyonlari ---
+
+# RAM Yonetimi - Daha akilli tutma (ozellik kaybi yok)
+ro.sys.fw.bg_cached_procs=160
+ro.vendor.qti.sys.fw.bg_cached_procs=160
+persist.sys.fw.bg_apps_limit=160
+ro.sys.fw.bservice_limit=128
+ro.sys.fw.bservice_age=10000
+ro.sys.fw.empty_app_percent=50
+ro.sys.fw.trim_empty_freq=14400000
+ro.sys.fw.trim_cache_freq=21600000
+
+# LMK / Zram Optimizasyonu
+ro.lmk.swap_free_low_percentage=15
+ro.lmk.thrashing_limit=40
+ro.lmk.psi_complete_stall_ms=150
+ro.lmk.kill_heaviest_task=true
+ro.lmk.kill_timeout_ms=100
+
+# Animasyon Hizlandirma (0.8x - %20 daha hizli, gorunum ayni)
+persist.sys.animator_duration_scale=0.8
+persist.sys.window_animation_scale=0.8
+persist.sys.transition_animation_scale=0.8
+
+# Dalvik/ART VM Optimizasyonu - SD865 icin
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=256m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
+dalvik.vm.dex2oat-threads=4
+dalvik.vm.dex2oat-cpu-set=0,1,2,3
+dalvik.vm.image-dex2oat-threads=4
+dalvik.vm.image-dex2oat-cpu-set=0,1,2,3

@@ -48,6 +48,17 @@ ADD_TO_WORK_DIR "a52qnsxx" "vendor" "bin/hw/wpa_supplicant" 0 2000 755 "u:object
 echo "Fix MIDAS model detection"
 sed -i "s/ro.product.device/ro.product.vendor.device/g" "$WORK_DIR/vendor/etc/midas/midas_config.json"
 
+echo "Optimize MIDAS AI inference dimensions for SD865"
+MIDAS_CFG="$WORK_DIR/vendor/etc/midas/midas_config.json"
+# Once HDR/Moire: 512 -> 384 (siralama onemli: once 512'leri degistir)
+sed -i 's/"inference_dim": 512/"inference_dim": 384/g' "$MIDAS_CFG"
+sed -i 's/"inference_width": 512/"inference_width": 384/g' "$MIDAS_CFG"
+sed -i 's/"inference_height": 512/"inference_height": 384/g' "$MIDAS_CFG"
+# Sonra Deblur: 768 -> 512 (artik 512 satirlari zaten 384 olmus, carpisma yok)
+sed -i 's/"inference_dim": 768/"inference_dim": 512/g' "$MIDAS_CFG"
+sed -i 's/"inference_width": 768/"inference_width": 512/g' "$MIDAS_CFG"
+sed -i 's/"inference_height": 768/"inference_height": 512/g' "$MIDAS_CFG"
+
 echo "Remove DualDAR mount points"
 sed -i "/keydata/d" "$WORK_DIR/vendor/etc/fstab.qcom"
 sed -i "/keyrefuge/d" "$WORK_DIR/vendor/etc/fstab.qcom"
