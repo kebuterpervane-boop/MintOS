@@ -127,10 +127,6 @@ ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libnfc-sec.so"
 ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libstatslog_nfc.so"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Adding stock DesktopSystemUI"
-ADD_TO_WORK_DIR "r9qxxx" "system" "system/system/priv-app/DesktopSystemUI"
-LOG_STEP_OUT
-
 LOG_STEP_IN "- Adding r9qxxx biometric blobs"
 DELETE_FROM_WORK_DIR "vendor" "bin/hw/vendor.samsung.hardware.biometrics.face@2.0-service"
 DELETE_FROM_WORK_DIR "vendor" "etc/init/vendor.samsung.hardware.biometrics.face@2.0-service.rc"
